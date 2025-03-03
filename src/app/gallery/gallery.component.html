@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h1 class="text-center">{{ studentData.name }}</h1>
+  <p class="text-center">Student Number: {{ studentData.studentNumber }}</p>
+
+  <div class="gallery">
+    <div class="navigation text-center mb-3">
+      <p>Image {{ activeImageIndex + 1 }} of {{ studentData.photos.length }}</p>
+    </div>
+
+    <div class="main-image text-center mb-3">
+      <button
+        class="btn btn-primary m-2"
+        (click)="prevImage()"
+        [hidden]="activeImageIndex === 0"
+      >
+        Back
+      </button>
+      <img
+        [src]="studentData.photos[activeImageIndex].src"
+        class="rounded shadow-lg"
+        alt="Main Image"
+        style="width: 600px; height: 400px"
+      />
+      <button
+        class="btn btn-primary m-2"
+        (click)="nextImage()"
+        [hidden]="activeImageIndex === studentData.photos.length - 1"
+      >
+        Next
+      </button>
+      <p class="mt-2">{{ studentData.photos[activeImageIndex].caption }}</p>
+    </div>
+
+    <div class="d-flex justify-content-center flex-wrap">
+      <img
+        *ngFor="let photo of studentData.photos; let i = index"
+        [src]="photo.src"
+        (click)="setActiveImage(i)"
+        [class.active-thumbnail]="i === activeImageIndex"
+        class="thumbnail "
+        style="width: 17%;"
+        alt="Thumbnail Image"
+      />
+    </div>
+      />
+    </div>
+  </div>
